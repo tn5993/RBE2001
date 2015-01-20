@@ -1,0 +1,60 @@
+
+#include <Servo.h>
+#include <Encoder.h>
+ 
+
+Servo clawHeight;
+Servo armRotate;
+
+int potPin = 7;
+int potVal;
+int pos;
+
+int switchPin=31;
+ int button=digitalRead(switchPin);
+
+Encoder enc(22,23);
+
+void setup() {
+  clawHeight.attach(11); //motor that raises arm and turns encoder
+  //armRotate.attach(6); //motor that rotates arm and turns pot
+  pinMode(potPin, INPUT);
+  pinMode(switchPin, INPUT_PULLUP);
+  
+  //attachInterrupt(0, raiseISR, CHANGE);
+  
+  
+  Serial.begin(9600);
+ 
+  
+}
+
+
+
+void loop() {
+  
+  
+   //pos=enc.read();
+  // Serial.println(pos);
+   
+ //  potVal=analogRead(potPin);
+  // Serial.println(potVal);
+   button=digitalRead(switchPin);
+ 
+   Serial.println(button);
+  
+  // clawHeight.write(115);
+   if(button==0){
+     clawHeight.write(90); 
+     
+   }else  {
+   clawHeight.write(120); 
+ }
+   
+  // clawHeight.write(120);
+}
+/*
+void raiseISR(){
+  
+  Serial.print(digitalRead(switchPin));
+}*/
